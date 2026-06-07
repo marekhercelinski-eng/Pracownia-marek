@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pracownia Marek × BYE — Kolaboracja</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;900&family=Poller+One&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --malinowy: #D14D72;
+    --burgund: #6E2132;
+    --off-white: #F4F1EE;
+    --porcelanowy: #F6E9EC;
+    --czern: #121212;
+    --red-bye: #E8342A;
+    --font-main: 'DM Sans', sans-serif;
+    --font-logo: 'Poller One', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-main);
+    background: var(--off-white);
+    color: var(--czern);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(244,241,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(209,77,114,0.15);
+  }
+  nav .nav-logo {
+    font-family: var(--font-main);
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--czern);
+  }
+  nav .nav-logo span { color: var(--malinowy); }
+  nav ul {
+    list-style: none;
+    display: flex; gap: 2.5rem;
+  }
+  nav ul li a {
+    font-size: 14px; font-weight: 400;
+    color: var(--czern); text-decoration: none;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  nav ul li a:hover { opacity: 1; }
+  nav .nav-cta {
+    background: var(--malinowy); color: #fff;
+    padding: 0.55rem 1.4rem; border-radius: 100px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  nav .nav-cta:hover { background: var(--burgund); transform: scale(1.02); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 7rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.18; pointer-events: none;
+  }
+  .hero-bg-blob-1 {
+    width: 600px; height: 600px;
+    background: var(--malinowy);
+    top: -150px; right: -100px;
+    animation: blobFloat 8s ease-in-out infinite alternate;
+  }
+  .hero-bg-blob-2 {
+    width: 400px; height: 400px;
+    background: var(--burgund);
+    bottom: -100px; left: -80px;
+    animation: blobFloat 10s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes blobFloat {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(30px, 20px) scale(1.08); }
+  }
+
+  .collab-tag {
+    display: inline-block;
+    background: var(--porcelanowy);
+    border: 1px solid rgba(209,77,114,0.3);
+    color: var(--malinowy);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.4rem 1.2rem; border-radius: 100px;
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.7s ease both;
+  }
+
+  .hero-logos {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2.5rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.8s ease 0.1s both;
+  }
+
+  .pm-logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .pm-logo .pm-top {
+    font-family: var(--font-main);
+    font-weight: 300; font-size: 18px;
+    color: var(--burgund); letter-spacing: 0.5px;
+  }
+  .pm-logo .pm-bottom {
+    font-family: var(--font-logo);
+    font-size: 42px; color: var(--malinowy);
+    letter-spacing: -1px;
+  }
+  .pm-logo .pm-bottom span { font-size: 48px; }
+
+  .collab-x {
+    font-size: 28px; font-weight: 900;
+    color: var(--czern); opacity: 0.25;
+    padding: 0 0.5rem;
+  }
+
+  .bye-logo-wrap {
+    background: var(--red-bye);
+    border-radius: 18px;
+    padding: 14px 22px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+  }
+  .bye-rocket { font-size: 22px; color: #fff; line-height: 1; }
+  .bye-text {
+    font-family: var(--font-logo);
+    font-size: 32px; color: #fff; letter-spacing: -1px;
+  }
+  .bye-sub {
+    font-size: 9px; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.5px; text-transform: uppercase; font-weight: 700;
+    text-align: center; line-height: 1.3;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.9s ease 0.2s both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--malinowy);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem; font-weight: 300;
+    max-width: 580px; line-height: 1.8;
+    color: rgba(18,18,18,0.7);
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.9s ease 0.35s both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeInUp 0.9s ease 0.45s both;
+  }
+  .btn-primary {
+    background: var(--malinowy); color: #fff;
+    padding: 0.85rem 2.2rem; border-radius: 100px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 20px rgba(209,77,114,0.3);
+  }
+  .btn-primary:hover { background: var(--burgund); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--czern);
+    border: 1.5px solid rgba(18,18,18,0.25);
+    padding: 0.85rem 2.2rem; border-radius: 100px;
+    font-weight: 400; font-size: 1rem; text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--malinowy); color: var(--malinowy); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(18,18,18,0.4);
+    animation: bounce 2s ease infinite;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(209,77,114,0.5), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* SECTION SHARED */
+  section { padding: 7rem 5%; }
+  .section-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; color: var(--malinowy);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900; line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: normal; color: var(--malinowy); }
+
+  /* O NAS */
+  .about {
+    background: var(--czern); color: var(--off-white);
+    position: relative; overflow: hidden;
+  }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .about .section-label { color: var(--malinowy); }
+  .about .section-title { color: #fff; }
+  .about-desc {
+    font-size: 1rem; line-height: 1.9; font-weight: 300;
+    color: rgba(244,241,238,0.7);
+    margin-bottom: 2rem;
+  }
+  .about-advantage {
+    background: rgba(209,77,114,0.1);
+    border: 1px solid rgba(209,77,114,0.3);
+    border-radius: 16px; padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  .about-advantage h4 {
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--malinowy);
+    margin-bottom: 0.8rem;
+  }
+  .about-advantage p {
+    font-size: 0.95rem; line-height: 1.75; font-weight: 300;
+    color: rgba(244,241,238,0.75);
+  }
+  .persons-grid {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .person-card {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .person-photo-row {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+  .person-photo {
+    width: 72px; height: 72px; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    flex-shrink: 0;
+    border: 2px solid var(--malinowy);
+  }
+  .person-pm .person-photo { border-color: var(--malinowy); }
+  .person-bye .person-photo { border-color: var(--red-bye); }
+  .person-info h3 {
+    font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 0.2rem;
+  }
+  .person-role {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .person-pm .person-role { color: var(--malinowy); }
+  .person-bye .person-role { color: var(--red-bye); }
+  .person-bio {
+    font-size: 0.9rem; line-height: 1.8; font-weight: 300;
+    color: rgba(244,241,238,0.65);
+  }
+  .person-divider {
+    border: none; border-top: 1px solid rgba(244,241,238,0.1);
+    margin: 0.5rem 0;
+  }
+  .about-photo-full {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    border-radius: 20px; margin-bottom: 1.5rem;
+    filter: grayscale(20%);
+  }
+
+  /* PAKIETY */
+  .packages {
+    background: var(--off-white);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .packages-header { max-width: 600px; margin-bottom: 4rem; }
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .pkg-card {
+    background: #fff;
+    border: 1.5px solid rgba(18,18,18,0.08);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+  .pkg-card.featured {
+    border-color: var(--malinowy);
+    background: var(--burgund); color: #fff;
+  }
+  .pkg-badge {
+    display: inline-block;
+    background: var(--malinowy); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .pkg-card.featured .pkg-badge { background: rgba(255,255,255,0.2); }
+  .pkg-name {
+    font-family: var(--font-logo);
+    font-size: 2rem; color: var(--malinowy);
+    margin-bottom: 0.3rem;
+  }
+  .pkg-card.featured .pkg-name { color: rgba(255,255,255,0.9); }
+  .pkg-tagline {
+    font-size: 0.85rem; font-weight: 700;
+    color: rgba(18,18,18,0.5);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 1.2rem;
+  }
+  .pkg-card.featured .pkg-tagline { color: rgba(255,255,255,0.6); }
+  .pkg-desc {
+    font-size: 0.9rem; line-height: 1.75; font-weight: 300;
+    color: rgba(18,18,18,0.65);
+    margin-bottom: 1.5rem;
+  }
+  .pkg-card.featured .pkg-desc { color: rgba(255,255,255,0.75); }
+  .pkg-features {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .pkg-features li {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    font-size: 0.88rem; line-height: 1.5;
+    color: rgba(18,18,18,0.7);
+  }
+  .pkg-card.featured .pkg-features li { color: rgba(255,255,255,0.8); }
+  .pkg-features li::before {
+    content: '—';
+    color: var(--malinowy); font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .pkg-card.featured .pkg-features li::before { color: rgba(255,255,255,0.5); }
+  .pkg-cta {
+    display: block; text-align: center; margin-top: 2rem;
+    background: var(--malinowy); color: #fff;
+    padding: 0.75rem; border-radius: 100px;
+    font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .pkg-cta:hover { background: var(--burgund); }
+  .pkg-card.featured .pkg-cta { background: rgba(255,255,255,0.2); }
+  .pkg-card.featured .pkg-cta:hover { background: rgba(255,255,255,0.35); }
+
+  /* KORZYŚCI */
+  .benefits {
+    background: var(--porcelanowy);
+  }
+  .benefits-inner { max-width: 1200px; margin: 0 auto; }
+  .benefits-header { max-width: 560px; margin-bottom: 4rem; }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .benefit-card {
+    background: #fff; border-radius: 20px;
+    padding: 1.8rem;
+    border: 1px solid rgba(209,77,114,0.12);
+    transition: transform 0.2s;
+  }
+  .benefit-card:hover { transform: translateY(-4px); }
+  .benefit-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: var(--porcelanowy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 1.2rem;
+    border: 1px solid rgba(209,77,114,0.2);
+  }
+  .benefit-card h3 {
+    font-size: 1rem; font-weight: 900;
+    margin-bottom: 0.6rem; color: var(--czern);
+  }
+  .benefit-card p {
+    font-size: 0.88rem; line-height: 1.75; font-weight: 300;
+    color: rgba(18,18,18,0.65);
+  }
+
+  /* KONTAKT */
+  .contact {
+    background: var(--czern); color: var(--off-white);
+  }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: start;
+  }
+  .contact .section-title { color: #fff; }
+  .contact-desc {
+    font-size: 1rem; line-height: 1.8; font-weight: 300;
+    color: rgba(244,241,238,0.65);
+    margin-bottom: 2.5rem;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-info-row {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.9rem; color: rgba(244,241,238,0.65);
+  }
+  .contact-info-row span:first-child {
+    font-weight: 700; color: var(--malinowy); min-width: 80px;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-field label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(244,241,238,0.5); }
+  .form-field input, .form-field textarea, .form-field select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 0.85rem 1rem;
+    color: var(--off-white); font-family: var(--font-main);
+    font-size: 0.95rem; font-weight: 300;
+    outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+    border-color: var(--malinowy);
+  }
+  .form-field select option { background: var(--czern); }
+  .form-field textarea { min-height: 130px; resize: vertical; }
+  .form-submit {
+    background: var(--malinowy); color: #fff;
+    border: none; border-radius: 100px;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-main); font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: #be3d60; transform: translateY(-2px); }
+
+  /* FAQ */
+  .faq { background: var(--off-white); }
+  .faq-inner { max-width: 800px; margin: 0 auto; }
+  .faq-inner .section-label, .faq-inner .section-title { text-align: center; }
+  .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  .faq-item {
+    border-bottom: 1px solid rgba(18,18,18,0.1);
+  }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 0; cursor: pointer; text-align: left;
+    font-family: var(--font-main); font-size: 1rem; font-weight: 700;
+    color: var(--czern); gap: 1rem;
+  }
+  .faq-q-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--porcelanowy); border: 1px solid rgba(209,77,114,0.3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 18px; color: var(--malinowy);
+    transition: transform 0.25s, background 0.2s;
+  }
+  .faq-item.open .faq-q-icon { transform: rotate(45deg); background: var(--malinowy); color: #fff; }
+  .faq-a {
+    font-size: 0.93rem; line-height: 1.8; font-weight: 300;
+    color: rgba(18,18,18,0.65);
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.4rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--czern); color: rgba(244,241,238,0.4);
+    padding: 2.5rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.82rem; font-weight: 300;
+  }
+  footer .footer-brands { display: flex; align-items: center; gap: 1rem; font-weight: 700; }
+  footer .footer-brands .pm { color: var(--malinowy); }
+  footer .footer-brands .x { color: rgba(244,241,238,0.2); }
+  footer .footer-brands .bye { color: var(--red-bye); }
+
+  /* ANIMATIONS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .packages-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.9rem; }
+    .pm-logo .pm-bottom { font-size: 30px; }
+    .bye-text { font-size: 24px; }
+    section { padding: 5rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Pracownia <span>marek.</span> × BYE</div>
+  <ul>
+    <li><a href="#o-nas">O nas</a></li>
+    <li><a href="#pakiety">Pakiety</a></li>
+    <li><a href="#korzysci">Korzyści</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Napisz do nas</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-blob hero-bg-blob-1"></div>
+  <div class="hero-bg-blob hero-bg-blob-2"></div>
+
+  <div class="collab-tag">Kolaboracja 2025</div>
+
+  <div class="hero-logos">
+    <div class="pm-logo">
+      <span class="pm-top">Pracownia</span>
+      <span class="pm-bottom">marek<span>.</span></span>
+    </div>
+    <div class="collab-x">×</div>
+    <div class="bye-logo-wrap">
+      <div class="bye-rocket">🚀</div>
+      <div class="bye-text">BYE</div>
+      <div class="bye-sub">by Greg Salamon</div>
+    </div>
+  </div>
+
+  <h1>
+    Twój produkt zasługuje na<br>
+    <em>widzialność i sprzedaż.</em>
+  </h1>
+  <p class="hero-desc">
+    Łączymy mistrzowską fotografię produktową z algorytmiczną precyzją marketplace'ów.
+    Jeden duet. Pełna synergia kreacji i analityki. Zero przepalonych budżetów.
+  </p>
+  <div class="hero-actions">
+    <a href="#pakiety" class="btn-primary">Zobacz pakiety</a>
+    <a href="#o-nas" class="btn-outline">Poznaj nas</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- O NAS -->
+<section class="about" id="o-nas">
+  <div class="about-inner">
+    <div>
+      <p class="section-label reveal">O nas</p>
+      <h2 class="section-title reveal">Kreacja spotyka <em>analitykę.</em></h2>
+      <p class="about-desc reveal">
+        Jesteśmy duetem, który rozwiązuje największy problem e-commerce: brak komunikacji między kreacją a analityką. Marek tworzy wizualny content skrojony pod wymagania systemów reklamowych Grzegorza. Grzegorz dostarcza twarde dane o zachowaniach klientów, by ten mógł precyzyjniej projektować grafikę.
+      </p>
+      <div class="about-advantage reveal">
+        <h4>Wasz asymmetryczny atut</h4>
+        <p>Dla klienta z 200+ produktami oznacza to jedno: maksymalną skuteczność bez konieczności pośredniczenia między różnymi agencjami. Jeden brief, pełny zakres, mierzalne wyniki.</p>
+      </div>
+    </div>
+    <div class="persons-grid">
+      <div class="person-card person-pm reveal">
+        <div class="person-photo-row">
+          <img src="ChatGPT_Image_2_cze_2026__22_21_52_1.png" alt="Marek i Greg" class="person-photo" style="width:72px;height:72px;object-position:20% center;">
+          <div class="person-info">
+            <h3>Marek Herceliński</h3>
+            <div class="person-role">Założyciel · Pracownia marek</div>
+          </div>
+        </div>
+        <p class="person-bio">15 lat w fotografii produktowej, 10 lat w e-commerce. Nie tworzy „ładnych obrazków" — tworzy strategiczną oprawę wizualną, która drastycznie podnosi konwersję i buduje wizerunek klasy premium.</p>
+      </div>
+      <hr class="person-divider">
+      <div class="person-card person-bye reveal">
+        <div class="person-photo-row">
+          <img src="ChatGPT_Image_2_cze_2026__22_21_52_1.png" alt="Greg Salamon" class="person-photo" style="width:72px;height:72px;object-position:75% center;">
+          <div class="person-info">
+            <h3>Greg Salamon</h3>
+            <div class="person-role">Współtwórca · BYE</div>
+          </div>
+        </div>
+        <p class="person-bio">Strateg marketplace'ów, dla którego algorytmy Amazona i Allegro to czysta matematyka. Specjalista SEO, PPC i automatyzacji — generuje wielomilionowe obroty, nie „lajki".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKIETY -->
+<section id="pakiety" style="background: var(--off-white); padding: 7rem 5%;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="packages-header reveal">
+      <p class="section-label">Pakiety</p>
+      <h2 class="section-title">Wybierz swój <em>poziom wzrostu.</em></h2>
+    </div>
+    <div class="packages-grid">
+
+      <!-- m.start -->
+      <div class="pkg-card reveal">
+        <div class="pkg-badge">Pakiet 1</div>
+        <div class="pkg-name">m.start</div>
+        <div class="pkg-tagline">Sprawdź nasz duet</div>
+        <p class="pkg-desc">Dla firm, które chcą przetestować naszą współpracę na kluczowej części asortymentu — do 30 produktów na jedną platformę.</p>
+        <ul class="pkg-features">
+          <li>Zdjęcia produktowe + infografiki dla 30 produktów</li>
+          <li>Optymalizacja SEO opisów</li>
+          <li>Konfiguracja konta na marketplace</li>
+          <li>Kampanie reklamowe przez pierwsze 2 miesiące</li>
+          <li>Jednorazowy Setup Fee + opcjonalny Success Fee</li>
+        </ul>
+        <a href="#kontakt" class="pkg-cta">Zapytaj o wycenę</a>
+      </div>
+
+      <!-- m.identity (featured) -->
+      <div class="pkg-card featured reveal">
+        <div class="pkg-badge">Rekomendowany</div>
+        <div class="pkg-name">m.identity</div>
+        <div class="pkg-tagline">Pełne wejście 200+ SKU</div>
+        <p class="pkg-desc">Kompleksowe wdrożenie całego asortymentu (do 250 produktów) na dwie kluczowe platformy z pełną produkcją foto/video.</p>
+        <ul class="pkg-features">
+          <li>Foto + video dla 50 bestsellerów</li>
+          <li>Szablony graficzne dla całej reszty</li>
+          <li>Video wizerunkowe serii produktowych</li>
+          <li>Allegro + Amazon — pełna struktura kont</li>
+          <li>Zaawansowane strategie PPC i SEO</li>
+          <li>Retainer miesięczny + Success Fee 2–5%</li>
+        </ul>
+        <a href="#kontakt" class="pkg-cta">Zapytaj o wycenę</a>
+      </div>
+
+      <!-- m.signature -->
+      <div class="pkg-card reveal">
+        <div class="pkg-badge">Enterprise</div>
+        <div class="pkg-name">m.signature</div>
+        <div class="pkg-tagline">Dominacja rynku</div>
+        <p class="pkg-desc">Pełne portfolio, wejście na rynki zagraniczne (Amazon DE/FR/IT/ES, Erli, Kaufland) z content premium i agresywnym skalowaniem.</p>
+        <ul class="pkg-features">
+          <li>Content lokalizowany językowo</li>
+          <li>Wideo 3D i spoty reklamowe</li>
+          <li>Stała opieka kreatywna sezonowa</li>
+          <li>Automatyzacja + Brand Registry</li>
+          <li>Analityka konkurencji w czasie rzeczywistym</li>
+          <li>Revenue Share od kamieni milowych</li>
+        </ul>
+        <a href="#kontakt" class="pkg-cta">Zapytaj o wycenę</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KORZYŚCI -->
+<section class="benefits" id="korzysci">
+  <div class="benefits-inner">
+    <div class="benefits-header">
+      <p class="section-label reveal">Dlaczego my</p>
+      <h2 class="section-title reveal">Korzyści z pracy<br><em>z naszym duetem.</em></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">👁️</div>
+        <h3>Koniec z niską konwersją</h3>
+        <p>Kreacje projektowane pod wymagania algorytmów reklamowych. Ruch, który trafia na Twoje oferty, realnie zamienia się w koszyki zakupowe.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">💰</div>
+        <h3>Mierzalne ROAS</h3>
+        <p>Zero "zwiększania lajków". Grzegorz liczy zwrot z inwestycji reklamowej w milionach złotych rocznie. Każda złotówka musi pracować.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🏆</div>
+        <h3>Wizerunek klasy Premium</h3>
+        <p>Twoje produkty wyróżniają się z tłumu konkurencji na Allegro i Amazonie, co pozwala utrzymać wyższą marżę i buduje długofalowe zaufanie.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">⚙️</div>
+        <h3>Święty spokój przy 200+ SKU</h3>
+        <p>Doświadczenie w zarządzaniu dużym asortymentem. Spójne, profesjonalne opakowanie wizualne całej oferty bez chaosu między agencjami.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🌍</div>
+        <h3>Skalowanie za granicę</h3>
+        <p>Miliony gotowych do zakupu klientów w Polsce i na świecie. Amazon DE/FR/IT/ES, Allegro, Kaufland — wchodzimy tam, gdzie jest zysk.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🔗</div>
+        <h3>Jeden punkt kontaktu</h3>
+        <p>Jeden brief, jeden zespół, pełny zakres. Koniec z pilnowaniem przepływu informacji między fotografem, grafikiem, a specjalistą ds. reklam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label reveal">Kontakt</p>
+      <h2 class="section-title reveal">Gotowy na <em>wzrost?</em></h2>
+      <p class="contact-desc reveal">
+        Napisz do nas — opowiedz o swoim asortymencie, aktualnej sytuacji i celach. Wrócimy z konkretną propozycją w ciągu 48h.
+      </p>
+      <div class="contact-info reveal">
+        <div class="contact-info-row">
+          <span>Marek</span>
+          <span>Pracownia marek — kreacja wizualna</span>
+        </div>
+        <div class="contact-info-row">
+          <span>Greg</span>
+          <span>BYE — marketplace &amp; e-commerce</span>
+        </div>
+        <div class="contact-info-row">
+          <span>Odpowiedź</span>
+          <span>W ciągu 48 godzin</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-field">
+        <label for="name">Imię i nazwisko</label>
+        <input type="text" id="name" placeholder="Jan Kowalski" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Adres e-mail</label>
+        <input type="email" id="email" placeholder="jan@firma.pl" required>
+      </div>
+      <div class="form-field">
+        <label for="package">Interesujący pakiet</label>
+        <select id="package">
+          <option value="">Wybierz pakiet...</option>
+          <option value="start">m.start</option>
+          <option value="identity">m.identity</option>
+          <option value="signature">m.signature</option>
+          <option value="consult">Nie wiem — chcę konsultację</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="products">Liczba produktów / SKU</label>
+        <input type="text" id="products" placeholder="np. 200 produktów, 5 kategorii">
+      </div>
+      <div class="form-field">
+        <label for="message">Opowiedz o swoim biznesie</label>
+        <textarea id="message" placeholder="Co sprzedajesz, gdzie jesteś teraz, co chcesz osiągnąć?"></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submit-btn">Wyślij wiadomość →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <p class="section-label reveal">FAQ</p>
+    <h2 class="section-title reveal">Często zadawane<br><em>pytania.</em></h2>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Czy muszę wybrać konkretny pakiet, czy mogę dopasować zakres?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Pakiety to punkty wyjścia, nie sztywne ramy. Każda firma jest inna — podczas wstępnej rozmowy dopasowujemy zakres do Twoich potrzeb, budżetu i celów. Możliwe jest zarówno okrojenie pakietu, jak i jego rozszerzenie.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Jak wygląda współpraca przy dużym asortymencie (200+ SKU)?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Mamy sprawdzony proces dla dużych wolumenów. Zaczynamy od analizy bestsellerów i priorytetyzacji. Topowe produkty dostają pełną produkcję foto/video, reszta — spójne szablony graficzne oparte na tej samej identyfikacji. Wszystko działa równolegle, żeby nie blokować wdrożenia.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Na jakich platformach pracujecie?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Przede wszystkim Allegro i Amazon (PL, DE, FR, IT, ES). Obsługujemy również Kaufland, Erli i inne europejskie marketplace'y. Pracujemy też z własnym sklepem internetowym w obszarze contentu wizualnego i reklam Google.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Jak rozliczacie się za wyniki? Co to jest Success Fee?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Success Fee to procent od wygenerowanego obrotu lub zysku na platformach — zazwyczaj 2–5% w pakiecie m.identity i indywidualnie ustalane Revenue Share w pakiecie m.signature. To model, który sprawia, że nasze interesy są zbieżne z Twoimi: my zarabiamy więcej tylko wtedy, gdy Ty zarabiasz więcej.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Ile czasu trwa wdrożenie od momentu podpisania umowy?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Dla pakietu m.start — około 3–4 tygodnie do uruchomienia pierwszych kampanii. Dla m.identity z dużym asortymentem — etapowo: pierwsze produkty online w 4–6 tygodniach, pełne wdrożenie w 2–3 miesiącach. Pierwsze mierzalne wyniki zazwyczaj pojawiają się w ciągu 4–8 tygodni od startu kampanii.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Czy potrzebuję dostarczyć produkty fizycznie do fotografii?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Tak — do sesji zdjęciowych potrzebujemy próbek fizycznych. Ustalamy to podczas briefingu i pomagamy zorganizować logistykę wysyłki. Po sesji produkty oczywiście wracają do Ciebie. W przypadku infografik i materiałów graficznych możemy pracować wyłącznie na materiałach dostarczonych przez Ciebie (zdjęcia referencyjne, packshoty).</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brands">
+    <span class="pm">Pracownia marek.</span>
+    <span class="x">×</span>
+    <span class="bye">BYE by Greg Salamon</span>
+  </div>
+  <div>© 2025 Kolaboracja Pracownia marek × BYE. Wszystkie prawa zastrzeżone.</div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Wysłano! Wrócimy do Ciebie wkrótce ✓';
+  btn.style.background = '#2a7a4a';
+  btn.disabled = true;
+}
+</script>
+
+</body>
+</html>
